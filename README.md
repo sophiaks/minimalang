@@ -1,14 +1,18 @@
 # minimalang
 
 ## block
+```
 <block> ::= <statement>*
+```
 
 ## statement
+```
 <statement> ::= <assignment>
             |   <conditional>
             |   <loop>
             |   <stdout>
             ';'
+```
 
 ## assignment
 ```
