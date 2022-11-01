@@ -2,7 +2,7 @@
 
 ## block
 ```
-<block> ::= <statement>*
+<block> ::= "{" <statement>* "}" 
 ```
 
 ## statement
@@ -39,6 +39,21 @@
 <stdin> ::= '_<' <string> | <int>
 ```
 
+## function def
+```
+<func_def> ::= <type> <identifier> (<type> <identifier> [',' <type> <identifier>]*) <block>
+```
+
+# function body
+```
+<function_body> ::= '{' (<statement>)* 'return' <expression> '}'
+```
+
+# function
+```
+<function> ::= <func_def> <func_body> 
+```
+
 ## identifier
 ```
 <identifier> ::= <letter>+(<letter> | <digit>)*
@@ -65,6 +80,23 @@
        |  <term> '/' <factor>
        |  <term> '&&' <factor>
 ```
+## factor
+``` 
+<factor> ::= <int>
+        |    <identifier>
+        |    <string>
+        |    <unary> <factor>
+        |    '(' <logical> ')'
+        |    <stdin>
+        |    <primary>
+```
+
+## unary
+```
+<unary> ::= '+'
+        |   '='
+        |   '!'
+```
 
 ## primary
 ```
@@ -72,23 +104,31 @@
           | <constant>
           | <string>
           | ( <expression> )
+
 ```
 
-## STRING
+## string
 ```
-<string>  =: [a-Z]+
+<string>  ::= [a-Z]+
 ```
-## INT]
+
+## int
 ```
-<int>   : [sign] [0-9]+
+<int> ::= [sign] [0-9]+
 ```
+
 ## sign
 ```
 <string> ::= <letter> {<letter> | <digit>}
 ```
+
+## letter
 ```
-<letter> ::= A | B | ... | Z | a | b | ... | z
+<letter> ::= A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | Y | Z | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | y | x | y | z
 ```
+
+## digit
+
 ```
 <digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 ```
