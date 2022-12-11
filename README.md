@@ -20,7 +20,7 @@ VARDEC = TYPE, IDENTIFIER ;
 
 FUNCDEC = TYPE, IDENTIFIER , "(" [ , TYPE, IDENTIFIER [ , { "," , TYPE, IDENTIFIER } ] ] , ")" , FUNCBODY;
 
-FUNCBODY = "{", { STATEMENT }, [">", EXPRESSION] "}" ;
+FUNCBODY = "{", { STATEMENT }, ["return", EXPRESSION] "}" ;
 
 IF = "?" , "(" , RELEXPR , ")",  BLOCK , [ "!!" , BLOCK ] ;
 
