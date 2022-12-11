@@ -1,0 +1,14 @@
+i32 main() {
+    i32 x;
+    x = 1;
+    ? (x > 2) {
+        print_int(x);
+    }
+    ! {
+        x = x + 1;
+    }
+}
+
+void print_int(i32 x) {
+    >_(x);
+}

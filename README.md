@@ -1,134 +1,45 @@
 # minimalang
 
-## block
-```
-<block> ::= "{" <statement>* "}" 
-```
+LETTER = ( A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | Y | Z | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | y | x | y | z ) ;
 
-## statement
-```
-<statement> ::= <assignment>
-            |   <conditional>
-            |   <loop>
-            |   <stdout>
-            ';'
-```
+DIGIT = ( 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 ) ;
 
-## assignment
-```
-<assignment> ::= <primary> '=' <assignment>
-```
-## conditional
-```
-<conditional> ::= '?' <expression> '->' '('<statement>')'
-              |  '?' <expression> '->' '(' <statement> ')' '!' '(' <statement> ')'
-```           
-## loop
-```
-<loop> ::= '~' <expression> '->' '('<statement>')'
-       |  '~~' '(' <expression> ';' <expression> ';' <expression> ')' <statement>
-```
+NUM = DIGIT [ { DIGIT } ] ;
 
-## stdout
-```
-<stdout> ::= '>_' <expression>  
-```
+STR = '"', { LETTER | DIGIT }, '"';
 
-## stdin
-```
-<stdin> ::= '_<' <string> | <int>
-```
+TYPE = "int" | "str" ;
 
-## function def
-```
-<func_def> ::= <type> <identifier> (<type> <identifier> [',' <type> <identifier>]*) <block>
-```
+PROGRAM = { FUNCDEC } ;
 
-# function body
-```
-<function_body> ::= '{' (<statement>)* 'return' <expression> '}'
-```
+UNARY= ( "+" | "-" | "!" ) ;
 
-# function
-```
-<function> ::= <func_def> <func_body> 
-```
+IDENTIFIER = LETTER, { LETTER | DIGIT | "_" } ;
 
-## identifier
-```
-<identifier> ::= <letter>+(<letter> | <digit>)*
-```
+VARDEC = TYPE, IDENTIFIER ;
 
-## logical
-```
-<logical> ::= <arithmetic>
-          | <logical> '<' <arithmetic>
-          | <logical> '==' <arithmetic>
-          | <logical> '>' <arithmetic>
-```
-## arithmetic
-```
-<arithmetic> ::=  <term>
-             | <arithmetic> '+' <term>
-             | <arithmetic> '-' <term>
+FUNCDEC = TYPE, IDENTIFIER , "(" [ , TYPE, IDENTIFIER [ , { "," , TYPE, IDENTIFIER } ] ] , ")" , FUNCBODY;
 
-```
-## term
-```
-<term> ::= <factor>
-       |  <term> '*' <factor>
-       |  <term> '/' <factor>
-       |  <term> '&&' <factor>
-```
-## factor
-``` 
-<factor> ::= <int>
-        |    <identifier>
-        |    <string>
-        |    <unary> <factor>
-        |    '(' <logical> ')'
-        |    <stdin>
-        |    <primary>
-```
+FUNCBODY = "{", { STATEMENT }, [">", EXPRESSION] "}" ;
 
-## unary
-```
-<unary> ::= '+'
-        |   '='
-        |   '!'
-```
+IF = "?" , "(" , RELEXPR , ")", "->", BLOCK , [ "!" , BLOCK ] ;
 
-## primary
-```
-<primary> ::= <identifier>
-          | <constant>
-          | <string>
-          | ( <expression> )
+WHILE = "~" , "(" , RELEXPR , ")", "->" , BLOCK ;
 
-```
+STATEMENT =  ( λ | VARDEC | FUNCDEC | FUNCCALL | ASSIGNMENT | BLOCK | WHILE | IF ), ";"
 
-## string
-```
-<string>  ::= [a-Z]+
-```
+BLOCK = "{" { STATEMENT } "}";
 
-## int
-```
-<int> ::= [sign] [0-9]+
-```
+SDTIN = "_<", "(", ")" ;
 
-## sign
-```
-<string> ::= <letter> {<letter> | <digit>}
-```
+STDOUT = ">_", "(" RELEXPR ")" ;
 
-## letter
-```
-<letter> ::= A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | Y | Z | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | y | x | y | z
-```
+FACTOR = ( NUM | STR | IDENTIFIER | FUNCCALL | "(" , RELEXPR , ")" ) ;
 
-## digit
+TERM = FACTOR, { ("*" | "/" | "&&"), FACTOR } ;
 
-```
-<digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
-```
+EXPRESSION = TERM, { ("+" | "-" | "||"), TERM } ;
+
+RELEXPR =  EXPRESSION , { ("<" | "==" | ">" ) , EXPRESSION } ;
+
+ASSIGNMENT = IDENTIFIER, "=", RELEXPR ;
