@@ -1,14 +1,15 @@
-i32 main() {
-    i32 x;
-    x = 1;
+fn print_int(int y) {
+    >_(y);
+}
+
+fn main() {
+    int x;
+    x = _<();
     ? (x > 2) {
         print_int(x);
     }
-    ! {
+    !! {
         x = x + 1;
+        >_("<3");
     }
-}
-
-void print_int(i32 x) {
-    >_(x);
 }

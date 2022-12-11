@@ -22,9 +22,9 @@ FUNCDEC = TYPE, IDENTIFIER , "(" [ , TYPE, IDENTIFIER [ , { "," , TYPE, IDENTIFI
 
 FUNCBODY = "{", { STATEMENT }, [">", EXPRESSION] "}" ;
 
-IF = "?" , "(" , RELEXPR , ")", "->", BLOCK , [ "!" , BLOCK ] ;
+IF = "?" , "(" , RELEXPR , ")",  BLOCK , [ "!!" , BLOCK ] ;
 
-WHILE = "~" , "(" , RELEXPR , ")", "->" , BLOCK ;
+WHILE = "~" , "(" , RELEXPR , ")" , BLOCK ;
 
 STATEMENT =  ( λ | VARDEC | FUNCDEC | FUNCCALL | ASSIGNMENT | BLOCK | WHILE | IF ), ";"
 

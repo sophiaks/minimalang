@@ -1,8 +1,10 @@
-int main() {
+fn a() {
     int x;
     x = 2;
 
     >_(x);
+}
 
-    return 0;
+fn main () {
+    a();
 }

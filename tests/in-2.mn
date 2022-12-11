@@ -1,7 +1,7 @@
-int main() {
-    i32 x;
+fn main() {
+    int x;
     x = _<();
-    ~ (x < 3) {
+    ~ (x < 10) {
         >_(x);
         x = x + 1;
     }
