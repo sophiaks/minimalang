@@ -1,7 +1,8 @@
 # minimalang
 
 ## TESTES
-Foram realizados unit tests para cada arquivo de input. Os arquivos de código fonte para teste estão dentro da pasta `tests`, e os testes de unidade estão implementados no arquivo `test.py`. Para testar, rode o comando
+Foram realizados unit tests para cada arquivo de input. Os arquivos de código fonte para teste estão dentro da pasta `tests`, e os testes de unidade estão implementados no arquivo `test.py`. 
+Para testar, rode o comando
 ```
 python3 test.py
 ```
