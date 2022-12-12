@@ -1,6 +1,11 @@
 # minimalang
-## EBNF
 
+## TESTES
+Foram realizados unit tests para cada arquivo de input. Os arquivos de código fonte para teste estão dentro da pasta `tests`, e os testes de unidade estão implementados no arquivo `test.py` para testar, rode o comando
+```
+python3 test.py
+```
+## EBNF
 ```
 LETTER = ( A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | Y | Z | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | y | x | y | z ) ;
 
